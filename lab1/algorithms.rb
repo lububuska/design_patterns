@@ -12,3 +12,17 @@ def amount_of_dividers(number)
 end
 
 puts amount_of_dividers(12) 
+
+# Метод 2. Найти минимальную нечетную цифру числа.
+def minimal_odd_digit(number)
+  minimal_digit = 9
+  while number > 0 do
+    if number % 10 % 2 != 0 && number % 10 < minimal_digit
+      minimal_digit = number % 10
+    end
+    number /= 10
+  end
+  return minimal_digit
+end
+
+puts minimal_odd_digit(26574)
