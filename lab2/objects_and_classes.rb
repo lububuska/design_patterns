@@ -73,5 +73,5 @@ class Student
   def set_git
     @git = git
   end
-
+  
 end
