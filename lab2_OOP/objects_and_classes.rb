@@ -74,4 +74,14 @@ class Student
     @git = git
   end
   
+  def show_information()
+    puts "-----------------"
+    puts "#{@id}. #{@surname} #{@name} #{@fathername}" if @id 
+    puts "- #{@tel}" if @tel
+    puts "- #{@tg}" if @tg
+    puts "- #{@email}" if @email
+    puts "- #{@git}" if @git
+    puts "-----------------"
+  end
+
 end
