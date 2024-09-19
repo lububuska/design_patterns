@@ -1,15 +1,31 @@
 class Student
   attr_accessor :surname, :name, :fathername, :id, :tel, :tg, :email, :git
   
-  def initialize(surname, name, fathername, id = nil, tel = nil, tg = nil, email = nil, git = nil)
-    @surname = surname
-    @name = name
-    @fathername = fathername
-    @id = id
-    @tel = tel
-    @tg = tg
-    @email = email
-    @git = git
+  def initialize(parameters)
+    
+    if (!parameters[:surname]) then
+      raise "You didn't enter surname"
+    else
+      @surname = parameters[:surname]
+    end
+
+    if (!parameters[:name]) then
+      raise "You didn't enter name"
+    else
+      @name = parameters[:name]
+    end
+
+    if (!parameters[:fathername]) then
+      raise "You didn't enter fathername"
+    else
+      @fathername = parameters[:fathername]
+    end
+
+    @id = parameters[:id]
+    @tel = parameters[:tel]
+    @tg = parameters[:tg]
+    @email = parameters[:email]
+    @git = parameters[:git]
   end
 
   def show_information()
