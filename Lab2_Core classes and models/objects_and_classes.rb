@@ -1,24 +1,24 @@
 class Student
   attr_accessor :surname, :name, :fathername, :id, :tel, :tg, :email, :git
   
-  def initialize(parameters)
+  def initialize(parameters={})
     
     if (!parameters[:surname]) then
       raise "You didn't enter surname"
     else
-      @surname = parameters[:surname]
+      @surname = parameters.fetch(:surname)
     end
 
     if (!parameters[:name]) then
       raise "You didn't enter name"
     else
-      @name = parameters[:name]
+      @name = parameters.fetch[:name]
     end
 
     if (!parameters[:fathername]) then
       raise "You didn't enter fathername"
     else
-      @fathername = parameters[:fathername]
+      @fathername = parameters.fetch[:fathername]
     end
 
     @id = parameters[:id]
