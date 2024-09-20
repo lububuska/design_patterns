@@ -1,31 +1,29 @@
 class Student
-  attr_accessor :surname, :name, :fathername, :id, :tel, :tg, :email, :git
-  
+  attr_accessor :surname, :name, :fathername, :id, :tg, :email, :git
+  attr_reader :tel
+
   def initialize(parameters={})
     
-    if (!parameters[:surname]) then
-      raise "You didn't enter surname"
-    else
-      @surname = parameters.fetch(:surname)
-    end
+    @surname = parameters.fetch(:surname) { raise "You didn't enter surname" }
+    @name = parameters.fetch(:name) { raise "You didn't enter name" }
+    @fathername = parameters.fetch(:fathername) { raise "You didn't enter fathername" }  
 
-    if (!parameters[:name]) then
-      raise "You didn't enter name"
-    else
-      @name = parameters.fetch[:name]
-    end
-
-    if (!parameters[:fathername]) then
-      raise "You didn't enter fathername"
-    else
-      @fathername = parameters.fetch[:fathername]
-    end
-
+    self.tel = parameters[:tel]
     @id = parameters[:id]
-    @tel = parameters[:tel]
     @tg = parameters[:tg]
     @email = parameters[:email]
     @git = parameters[:git]
+  end
+
+  def self.telephone_validation?(tel_phone)
+    tel_phone.nil? || /\A(\+?7|8)\d{10}\z/.match?(tel_phone)
+  end
+
+  def tel=(tel_phone)
+    if !self.class.telephone_validation?(tel_phone)
+      raise "Your telephone number has invalid format!"
+    end
+    @tel = tel_phone
   end
 
   def show_information()
