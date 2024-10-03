@@ -1,18 +1,34 @@
 class Student
-  attr_accessor :surname, :name, :fathername, :id, :tg, :email, :git
-  attr_reader :tel
+  attr_reader :surname, :name, :fathername, :tel, :tg, :email, :git, :id 
 
-  def initialize(parameters={})
+  def initialize(surname:, name:, fathername:, id: nil, tel: nil, tg: nil, email: nil, git: nil)
     
-    @surname = parameters.fetch(:surname) { raise "You didn't enter surname" }
-    @name = parameters.fetch(:name) { raise "You didn't enter name" }
-    @fathername = parameters.fetch(:fathername) { raise "You didn't enter fathername" }  
+    self.surname = surname.nil? || surname.empty? ? (raise "You didn't enter surname") : surname
+    self.name = name.nil? || name.empty? ? (raise "You didn't enter name") : name
+    self.fathername = fathername.nil? || fathername.empty? ? (raise "You didn't enter fathername") : fathername
+ 
 
-    self.tel = parameters[:tel]
-    @id = parameters[:id]
-    @tg = parameters[:tg]
-    @email = parameters[:email]
-    @git = parameters[:git]
+    self.tel = tel
+    @id = id
+    self.tg = tg
+    self.email = email
+    self.git = git
+
+    validate()
+  end
+
+  # валидация полей
+
+  def self.surname?(surname)
+    /^[А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)?$/.match?(surname)
+  end
+
+  def self.name?(name)
+    /^[А-ЯЁ][а-яё]+$/.match?(name)
+  end
+
+  def self.fathername?(fathername)
+    /^[А-ЯЁ][а-яё]+$/.match?(fathername)
   end
 
   def self.telephone_validation?(tel_phone)
@@ -20,7 +36,7 @@ class Student
   end
 
   def self.telegram_validation?(telegram)
-    telegram.nil? || /^@[a-zA-Z0-9_]{5, 32}$/.match?(telegram)
+    telegram.nil? || /^@[a-zA-Z0-9_]{5,32}$/.match?(telegram)
   end
 
   def self.email_validation?(email)
@@ -31,6 +47,28 @@ class Student
     git.nil? || /^(https:\/\/)?(www\.)?github.com\/[a-zA-Z0-9_-]+$/.match?(git)
   end
 
+  # сеттеры
+
+  def surname=(surname)
+    if !self.class.surname?(surname)
+      raise "Your surname has invalid format!"
+    end
+    @surname = surname
+  end
+
+  def name=(name)
+    if !self.class.name?(name)
+      raise "Your name has invalid format!"
+    end
+    @name = name
+  end
+
+  def fathername=(fathername)
+    if !self.class.fathername?(fathername)
+      raise "Your fathername has invalid format!"
+    end
+    @fathername = fathername
+  end
 
   def tel=(tel_phone)
     if !self.class.telephone_validation?(tel_phone)
@@ -60,6 +98,22 @@ class Student
     @git = git
   end
 
+  def validate_git()
+    if git.nil? 
+      raise "Your git is empty!"
+    end
+  end
+
+  def validate_contacts()
+    if tg.nil? && email.nil? && tel.nil? 
+      raise "Telegram, email or telephone number is empty!"
+    end
+  end
+
+  def validate()
+    validate_git()
+    validate_contacts()
+  end
 
   def to_s()
     puts "-----------------"
@@ -70,5 +124,4 @@ class Student
     puts "- #{@git}" if @git
     puts "-----------------"
   end
-
 end
