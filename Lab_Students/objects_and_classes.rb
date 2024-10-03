@@ -7,14 +7,8 @@ class Student
     self.name = name.nil? || name.empty? ? (raise "You didn't enter name") : name
     self.fathername = fathername.nil? || fathername.empty? ? (raise "You didn't enter fathername") : fathername
  
-
-    self.tel = tel
     @id = id
-    self.tg = tg
-    self.email = email
-    self.git = git
 
-    validate()
   end
 
   # валидация полей
@@ -47,6 +41,59 @@ class Student
     git.nil? || /^(https:\/\/)?(www\.)?github.com\/[a-zA-Z0-9_-]+$/.match?(git)
   end
 
+  def validate_git()
+    if git.nil? 
+      raise "Your git is empty!"
+    end
+  end
+
+  def validate_contacts()
+    if tg.nil? && email.nil? && tel.nil? 
+      raise "Telegram, email or telephone number is empty!"
+    end
+  end
+
+  def validate()
+    validate_git()
+    validate_contacts()
+  end
+
+  def set_contacts(tel: nil, tg: nil, email: nil, git: nil)
+    if !self.class.telephone_validation?(tel)
+      raise "Your telephone number has invalid format!"
+    else
+      @tel = tel
+    end
+    if !self.class.telegram_validation?(tg)
+      raise "Your telephone number has invalid format!"
+    else
+      @tg = tg
+    end
+    if !self.class.email_validation?(email)
+      raise "Your telephone number has invalid format!"
+    else
+      @email = email
+    end
+    if !self.class.git_validation?(git)
+      raise "Your telephone number has invalid format!"
+    else
+      @git = git
+    end
+    validate()
+  end
+
+  def to_s()
+    puts "-----------------"
+    puts "#{@id}. #{@surname} #{@name} #{@fathername}" if @id 
+    puts "- #{@tel}" if @tel
+    puts "- #{@tg}" if @tg
+    puts "- #{@email}" if @email
+    puts "- #{@git}" if @git
+    puts "-----------------"
+  end
+
+
+
   # сеттеры
 
   def surname=(surname)
@@ -68,60 +115,5 @@ class Student
       raise "Your fathername has invalid format!"
     end
     @fathername = fathername
-  end
-
-  def tel=(tel_phone)
-    if !self.class.telephone_validation?(tel_phone)
-      raise "Your telephone number has invalid format!"
-    end
-    @tel = tel_phone
-  end
-
-  def tg=(telegram)
-    if !self.class.telegram_validation?(telegram)
-      raise "Your telegram has invalid format!"
-    end
-    @tg = telegram
-  end
-
-  def email=(email)
-    if !self.class.email_validation?(email)
-      raise "Your email has invalid format!"
-    end
-    @email = email
-  end
-
-  def git=(git)
-    if !self.class.git_validation?(git)
-      raise "Your git has invalid format!"
-    end
-    @git = git
-  end
-
-  def validate_git()
-    if git.nil? 
-      raise "Your git is empty!"
-    end
-  end
-
-  def validate_contacts()
-    if tg.nil? && email.nil? && tel.nil? 
-      raise "Telegram, email or telephone number is empty!"
-    end
-  end
-
-  def validate()
-    validate_git()
-    validate_contacts()
-  end
-
-  def to_s()
-    puts "-----------------"
-    puts "#{@id}. #{@surname} #{@name} #{@fathername}" if @id 
-    puts "- #{@tel}" if @tel
-    puts "- #{@tg}" if @tg
-    puts "- #{@email}" if @email
-    puts "- #{@git}" if @git
-    puts "-----------------"
   end
 end
