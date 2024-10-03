@@ -82,15 +82,15 @@ class Student
     validate()
   end
 
-  def to_s()
+  def to_s
     puts "-----------------"
-    puts "#{@id}. #{@surname} #{@name} #{@fathername}" if @id 
+    puts "#{@id}. #{@surname} #{@name} #{@fathername}" if @id
     puts "- #{@tel}" if @tel
     puts "- #{@tg}" if @tg
     puts "- #{@email}" if @email
     puts "- #{@git}" if @git
     puts "-----------------"
-  end
+  end  
 
   def get_fio()
     "ФИО: #{surname} #{name[0]}. #{fathername[0]}."
@@ -109,8 +109,12 @@ class Student
   end
 
   def get_info()
-    "#{get_fio}, git: #{git}, #{get_contacts}"
+    "#{get_fio}, git: #{get_git}, #{get_contacts}"
   end 
+
+  def get_git()
+    @git
+  end
 
   private
 
