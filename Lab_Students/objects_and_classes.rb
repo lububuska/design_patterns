@@ -92,7 +92,27 @@ class Student
     puts "-----------------"
   end
 
+  def get_fio()
+    "ФИО: #{surname} #{name[0]}. #{fathername[0]}."
+  end
 
+  def get_contacts()
+    if tel then
+      "telephone number: #{tel}"
+    elsif tg then
+      "telegram: #{tg}"
+    elsif email then
+      "email: #{email}"
+    else 
+      "contacts are not provided"
+    end
+  end
+
+  def get_info()
+    "#{get_fio}, git: #{git}, #{get_contacts}"
+  end 
+
+  private
 
   # сеттеры
 
