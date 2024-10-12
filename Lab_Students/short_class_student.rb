@@ -1,17 +1,16 @@
-require './class_student.rb'
+require './class_person.rb'
 
-class StudentShort
-  attr_reader :fio, :git, :id, :contact
+class StudentShort < Person
+  attr_reader :fio, :contact
 
   def initialize(fio: nil, git: nil, id:nil, contact: nil)
     @fio = fio
-    @git = git
-    @id = id
+    super(id: id, git: git)
     @contact = contact
   end
 
   def self.from_student(student)
-    new(id: student.id, fio: student.get_fio(), git: student.get_git(), contact:student.get_contacts())
+    new(id: student.id, fio: student.get_fio(), git: student.git, contact:student.contact())
   end
 
   def self.from_string(id:, string:)
@@ -19,11 +18,13 @@ class StudentShort
   end
 
   def to_s
-    puts "-----------------"
-    puts "#{@id}. #{@fio}" 
-    puts "- #{@contact}" 
-    puts "- #{@git}" 
-    puts "-----------------"
+    result = ""
+    result += "-----------------\n"
+    result += "#{@id}. #{@fio}\n" 
+    result += "- #{@contact}\n" 
+    result += "- #{@git}\n" 
+    result += "-----------------\n"
+    return result
   end
 
   private

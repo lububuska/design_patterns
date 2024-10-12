@@ -1,14 +1,14 @@
-class Student
-  attr_reader :surname, :name, :fathername, :tel, :tg, :email, :git, :id 
+require './class_person.rb'
+
+class Student < Person
+  attr_reader :surname, :name, :fathername, :tel, :tg, :email
 
   def initialize(surname:, name:, fathername:, id: nil, tel: nil, tg: nil, email: nil, git: nil)
-    
+    super(id: id, git: git)
     self.surname = surname.nil? || surname.empty? ? (raise "You didn't enter surname") : surname
     self.name = name.nil? || name.empty? ? (raise "You didn't enter name") : name
     self.fathername = fathername.nil? || fathername.empty? ? (raise "You didn't enter fathername") : fathername
- 
-    @id = id
-
+    set_contacts(tel, tg, email, git)
   end
 
   # валидация полей
@@ -25,99 +25,93 @@ class Student
     /^[А-ЯЁ][а-яё]+$/.match?(fathername)
   end
 
-  def self.telephone_validation?(tel_phone)
+  def self.is_telephone?(tel_phone)
     tel_phone.nil? || /^(\+?7|8)\d{10}$/.match?(tel_phone)
   end
 
-  def self.telegram_validation?(telegram)
+  def self.is_telegram?(telegram)
     telegram.nil? || /^@[a-zA-Z0-9_]{5,32}$/.match?(telegram)
   end
 
-  def self.email_validation?(email)
+  def self.is_email?(email)
     email.nil? || /^[a-zA-Z0-9_.+\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$/.match?(email)
   end
 
-  def self.git_validation?(git)
-    git.nil? || /^(https:\/\/)?(www\.)?github.com\/[a-zA-Z0-9_-]+$/.match?(git)
+  # сеттер для контактов
+
+  def set_contacts(tel: nil, tg: nil, email: nil, git: nil)      
+    if !tel.nil?
+      if !self.class.is_telephone?(tel)
+        raise "Your telephone number has invalid format!"
+      else
+        @tel = tel
+      end
+    end
+
+    if !tg.nil?
+      if !self.class.is_telegram?(tg)
+        raise "Your telegram has invalid format!"
+      else
+        @tg = tg
+      end
+    end
+
+    if !email.nil?
+      if !self.class.is_email?(email)
+        raise "Your email has invalid format!"
+      else
+        @email = email
+      end
+    end
+
+    if !git.nil? 
+      if !self.class.is_git_valid?(git)
+        raise "Your git has invalid format!"
+      else
+        @git = git
+      end
+    end
   end
 
-  def validate_git()
-    if git.nil? 
-      raise "Your git is empty!"
-    end
-  end
-
-  def validate_contacts()
-    if tg.nil? && email.nil? && tel.nil? 
-      raise "Telegram, email or telephone number is empty!"
-    end
-  end
-
-  def validate()
-    validate_git()
-    validate_contacts()
-  end
-
-  def set_contacts(tel: nil, tg: nil, email: nil, git: nil)
-    if !self.class.telephone_validation?(tel)
-      raise "Your telephone number has invalid format!"
-    else
-      @tel = tel
-    end
-    if !self.class.telegram_validation?(tg)
-      raise "Your telephone number has invalid format!"
-    else
-      @tg = tg
-    end
-    if !self.class.email_validation?(email)
-      raise "Your telephone number has invalid format!"
-    else
-      @email = email
-    end
-    if !self.class.git_validation?(git)
-      raise "Your telephone number has invalid format!"
-    else
-      @git = git
-    end
-    validate()
-  end
-
-  def to_s
-    puts "-----------------"
-    puts "#{@id}. #{@surname} #{@name} #{@fathername}" if @id
-    puts "- #{@tel}" if @tel
-    puts "- #{@tg}" if @tg
-    puts "- #{@email}" if @email
-    puts "- #{@git}" if @git
-    puts "-----------------"
+  def to_s()
+    result = ""
+    result += "-----------------\n"
+    result += "#{@id}. #{@surname} #{@name} #{@fathername}\n" if @id
+    result += "- #{@tel}\n" if @tel
+    result += "- #{@tg}\n" if @tg
+    result += "- #{@email}\n" if @email
+    result += "- #{@git}\n" if @git
+    result += "-----------------\n"
   end  
 
   def get_fio()
     "ФИО: #{surname} #{name[0]}. #{fathername[0]}."
   end
 
-  def get_contacts()
-    if tel then
-      "telephone number: #{tel}"
-    elsif tg then
-      "telegram: #{tg}"
-    elsif email then
-      "email: #{email}"
-    else 
-      "contacts are not provided"
-    end
+  def contact()
+    if @tel then
+      "telephone number: #{@tel}"
+    elsif @tg then
+      "telegram: #{@tg}"
+    elsif @email then
+      "email: #{@email}"
   end
 
   def get_info()
-    "#{get_fio}, git: #{get_git}, #{get_contacts}"
+    "#{get_fio}, git: #{git}, #{contact}"
   end 
 
-  def get_git()
-    @git
+  # валидация объекта на наличие гита и контактов
+
+  def has_contacts?()
+    return tg.nil? || email.nil? || tel.nil? 
   end
 
-  private
-
+  def validate()
+    has_git?()
+    has_contacts?()
+  end
+  
   # сеттеры
 
   def surname=(surname)
