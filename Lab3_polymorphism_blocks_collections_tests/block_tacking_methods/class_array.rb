@@ -34,6 +34,17 @@ class Array_methods
     return result
   end
 
+  
+  def min
+    if self.array.nil? or self.array.empty? 
+      return nil
+    end
+    minimal = self.array[0]
+    self.array.each do |element|
+      minimal = element if yield(element, minimal) < 0
+    end
+  end 
+
   private
   attr_accessor :array
 end
