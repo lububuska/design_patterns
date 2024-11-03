@@ -24,6 +24,16 @@ class Array_methods
     return result
   end
 
+  def group_by
+    result = {}
+    self.array.each do |element|
+      key = yield(element)
+      result[key] = result.fetch(key, [])
+      result[key] << element
+    end
+    return result
+  end
+
   private
   attr_accessor :array
 end
