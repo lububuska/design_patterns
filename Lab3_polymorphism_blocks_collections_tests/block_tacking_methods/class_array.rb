@@ -15,6 +15,15 @@ class Array_methods
     return count
   end
 
+  def filter_map
+    result = []
+    self.array.each do |element|
+      value = yield(element)
+      result.push(value) if value
+    end
+    return result
+  end
+
   private
   attr_accessor :array
 end
