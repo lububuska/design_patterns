@@ -65,9 +65,8 @@ class ArrayMethods
   def take_while
     result = []
     self.array.each do |element|
-      if yield(element) == true
-        result.push(element)
-      end
+      break unless yield(element)
+      result.push(element)
     end
     return result
   end
