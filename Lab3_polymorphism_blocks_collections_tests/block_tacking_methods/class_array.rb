@@ -62,11 +62,16 @@ class ArrayMethods
     return array
   end
 
+  def take_while
+    result = []
+    self.array.each do |element|
+      if yield(element) == true
+        result.push(element)
+      end
+    end
+    return result
+  end
+
   private
   attr_accessor :array
 end
-
-
-# array = ArrayMethods.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
-# result = array.partition{|x| (x % 3).zero?}
-# print(result)
