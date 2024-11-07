@@ -1,4 +1,4 @@
-class Array_methods
+class ArrayMethods
   def initialize(array)
     @array = array
   end
@@ -43,8 +43,30 @@ class Array_methods
     self.array.each do |element|
       minimal = element if yield(element, minimal) < 0
     end
+    return minimal
   end 
+
+  def partition
+    array = []
+    part_if_true = []
+    part_if_false = []
+    self.array.each do |element|
+      if yield(element) == true
+        part_if_true.push(element)
+      else
+        part_if_false.push(element)
+      end
+    end
+    array.push(part_if_true)
+    array.push(part_if_false)
+    return array
+  end
 
   private
   attr_accessor :array
 end
+
+
+# array = ArrayMethods.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
+# result = array.partition{|x| (x % 3).zero?}
+# print(result)
