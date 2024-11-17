@@ -1,8 +1,18 @@
 require "./tag.rb"
+require "./bfs.rb"
+require "./dfs.rb"
 class Tree
   attr_accessor :root
   def initialize(html_string)
     self.root = parse_from_html(html_string)
+  end
+
+  def dfs_iterator
+    DFS.new(self.root)
+  end
+
+  def bfs_iterator
+    BFS.new(self.root)
   end
 
   private
@@ -40,9 +50,3 @@ class Tree
     return root      
   end
 end
-
-
-html = "<body><h1 class=\"title\">Hello, World!</h1><p id=\"main\">This is a test.</p></body>"
-tree = Tree.new(html)
-
-puts tree.root.to_s

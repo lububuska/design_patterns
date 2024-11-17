@@ -14,7 +14,7 @@ class Tag
   #строка
   def to_s
     attrs = attributes.map { |key, value| "#{key}=\"#{value}\"" }.join(' ')
-    "<#{name}#{' ' if !attrs.empty?}#{attrs}>#{content}#{children.join}</#{name}>"
+    "<#{name}#{' ' if !attrs.empty?}#{attrs}>#{content}</#{name}>"
   end
   
 
