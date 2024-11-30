@@ -1,14 +1,16 @@
 require './class_person.rb'
 
 class Student < Person
-  attr_reader :surname, :name, :fathername, :tel, :tg, :email
+  include Comparable
+  attr_reader :surname, :name, :fathername, :tel, :tg, :email, :birthday
 
-  def initialize(surname:, name:, fathername:, id: nil, tel: nil, tg: nil, email: nil, git: nil)
+  def initialize(surname:, name:, fathername:, birthday:, id: nil, tel: nil, tg: nil, email: nil, git: nil)
     super(id: id, git: git)
     self.surname = surname.nil? || surname.empty? ? (raise "You didn't enter surname") : surname
     self.name = name.nil? || name.empty? ? (raise "You didn't enter name") : name
     self.fathername = fathername.nil? || fathername.empty? ? (raise "You didn't enter fathername") : fathername
-    set_contacts(tel, tg, email, git)
+    set_contacts(tel:, tg:, email:, git:)
+    self.birthday = birthday
   end
 
   # валидация полей
@@ -95,6 +97,7 @@ class Student < Person
       "telegram: #{@tg}"
     elsif @email then
       "email: #{@email}"
+    end
   end
 
   def get_info()
@@ -111,8 +114,17 @@ class Student < Person
     has_git?()
     has_contacts?()
   end
-  
+
+  def <=>(other)
+    return nil unless other.is_a?(Student)
+    birthday <=> other.birthday           
+  end
+
   # сеттеры
+
+  def birthday=(bd)
+    @birthday = bd
+  end
 
   def surname=(surname)
     if !self.class.surname?(surname)
