@@ -3,11 +3,12 @@ class Data_list
     raise ArgumentError, "Data must be an array" unless list.is_a?(Array)
     @list = list.freeze
     @selected_ids = []
+    @index = 0
   end
 
   #Выделить элемент по номеру
   def select(index)
-    raise "Index is out of range" unless index.is_a?(Integer) && index.between?(0, @list.size)
+    raise "Index is out of range" unless index.is_a?(Integer) && index.between?(0, @list.size-1)
     @selected_ids.append(index) unless @selected_ids.include?(index)
     return @list[index]
   end
@@ -18,11 +19,23 @@ class Data_list
   end
 
   def get_names
+    raise NotImplementedError, "Method get_names is not implemented!"
   end
 
   def get_data
+    data_in_table = []
+    selected = self.get_selected
+    selected.each do |selected_ids|
+      object = self.list[selected_ids]
+      row = [index + 1, object.fio, object.contact, object.git]
+      data_in_table.append(row)
+    end
+    return Data_table.new(data_in_table)
   end
 
-  private
-  attr_accessor :list, :selected_ids  
+  protected
+  attr_accessor :list, :selected_ids, :index
+  def make_from_attributes #Этот метод надо реализовать в дочернем классе
+    raise NotImplementedError, "Method get_names is not implemented!"
+  end
 end

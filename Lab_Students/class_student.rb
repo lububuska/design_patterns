@@ -9,7 +9,7 @@ class Student < Person
     self.surname = surname.nil? || surname.empty? ? (raise "You didn't enter surname") : surname
     self.name = name.nil? || name.empty? ? (raise "You didn't enter name") : name
     self.fathername = fathername.nil? || fathername.empty? ? (raise "You didn't enter fathername") : fathername
-    set_contacts(tel:, tg:, email:, git:)
+    set_contacts(tel: tel, tg: tg, email: email, git: git)
     self.birthday = birthday
   end
 
