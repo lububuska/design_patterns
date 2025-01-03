@@ -16,12 +16,19 @@ test = Data_list_student_short.new([
   StudentShort.new(id:3, fio:"Sidorov S. S.", contact:"89320509129",  git:"github.com/dhy49")
 ])
 
-test.select(0)
-test.select(1)
-test.select(2)
-puts test.get_data().row_count()
-puts test.get_data().get_element(0, 2) 
-test.get_selected.each { |item| puts item.to_s }
+test.to_array.each { |item| puts item.join(" ") }
+new_test = Data_list_student_short.new([
+  StudentShort.new(id: 4, fio: "Smirnov S. S.", contact: "smirnov@mail.com", git: "github.com/smirnov"),
+  StudentShort.new(id: 5, fio: "Kuznetsov K. K.", contact: "@kuznetsov_tg", git: "github.com/kuznetsov")
+])
+test.list = new_test.to_list
+test.to_array.each { |item| puts item.join(" ") }
+# test.select(0)
+# test.select(1)
+# test.select(2)
+# puts test.get_data().row_count()
+# puts test.get_data().get_element(0, 2) 
+# test.get_selected.each { |item| puts item.to_s }
 # puts student1.to_s()
 # puts student2.to_s()
 # puts student3.to_s()

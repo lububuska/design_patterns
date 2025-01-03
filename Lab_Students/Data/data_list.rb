@@ -33,8 +33,14 @@ class Data_list
     return Data_table.new(data_in_table)
   end
 
+  def list=(list)
+    raise ArgumentError, "Data must be an array" unless list.is_a?(Array)
+    @list = list.freeze
+  end
+
   protected
-  attr_accessor :list, :selected_ids, :index
+  attr_accessor :selected_ids, :index
+  attr_reader :list
   def make_from_attributes #Этот метод надо реализовать в дочернем классе
     raise NotImplementedError, "Method get_names is not implemented!"
   end
