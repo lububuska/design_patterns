@@ -38,7 +38,7 @@ class Data_list
     @list = list.freeze
   end
 
-  protected
+  private
   attr_accessor :selected_ids, :index
   attr_reader :list
   def make_from_attributes #Этот метод надо реализовать в дочернем классе
