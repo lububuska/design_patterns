@@ -60,6 +60,20 @@ class Student < Person
     result += "-----------------\n"
   end  
 
+  def to_h()
+    {
+      'id' => @id,
+      'surname' => @surname,
+      'name' => @name,
+      'fathername' => @fathername,
+      'birthday' => @birthday,
+      'tel' => @tel,
+      'tg' => @tg,
+      'email' => @email,
+      'git' => @git
+    }
+  end
+
   def get_fio()
     "ФИО: #{surname} #{name[0]}. #{fathername[0]}."
   end

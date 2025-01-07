@@ -1,5 +1,6 @@
 class Person
-  attr_reader :id, :git 
+  attr_accessor :id
+  attr_reader :git 
   def initialize(id: nil, git: nil)
     @id = id
     @git = git

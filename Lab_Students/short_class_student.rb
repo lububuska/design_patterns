@@ -27,6 +27,15 @@ class StudentShort < Person
     return result
   end
 
+  def to_h()
+    {
+      'id' => @id,
+      'fio'=> @fio,
+      'contact' => @contact,
+      'git' => @git
+    }
+  end
+
   private
 
   def self.parse_fio(string)

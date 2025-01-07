@@ -1,0 +1,46 @@
+[
+  {
+    "id": 2,
+    "surname": "Аникин",
+    "name": "Марк",
+    "fathername": "Андреевич",
+    "birthday": 1034455800,
+    "tel": null,
+    "tg": "@corray",
+    "email": null,
+    "git": "github.com/Corray333"
+  },
+  {
+    "id": 3,
+    "surname": "Иванов",
+    "name": "Иван",
+    "fathername": "Иванович",
+    "birthday": 946759800,
+    "tel": null,
+    "tg": null,
+    "email": "ivanTheBest@mail.ru",
+    "git": "github.com/ivanTheBest"
+  },
+  {
+    "id": 4,
+    "surname": "Кузнецов",
+    "name": "Дмитрий",
+    "fathername": "Андреевич",
+    "birthday": 1055789400,
+    "tel": null,
+    "tg": null,
+    "email": "kuznetsov.dmitry2004@gmail.com",
+    "git": "github.com/dmitrykuznetsov"
+  },
+  {
+    "id": 1,
+    "surname": "Масенко",
+    "name": "Мария",
+    "fathername": "Сергеевна",
+    "birthday": 1076532600,
+    "tel": null,
+    "tg": null,
+    "email": "masenko.maria2004@gmail.com",
+    "git": "github.com/lububuska"
+  }
+]
