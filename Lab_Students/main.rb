@@ -1,10 +1,9 @@
 require './class_student.rb'
 require './short_class_student.rb'
-require './Tree/binary_tree.rb'
 require_relative 'Data/data_list_student_short.rb'
 require_relative 'Data/data_list.rb'
-require './student_list_JSON.rb'
-require './student_list_YAML.rb'
+require './strategy_JSON.rb'
+require './strategy_YAML.rb'
 require './student_list_file_base.rb'
 
 
@@ -42,15 +41,20 @@ student6 = Student.new(surname: "Кузнецов", name: "Дмитрий", fath
 # puts list.get_student_by_id(13)
 # puts list.get_student_short_count
 
-list = Student_list_YAML.new('students_example.yaml')
-list.read_list_from_file()
-puts list.get_student_by_id(5)
-puts list.get_student_short_count
+# list = Student_list_YAML.new('students_example.yaml')
+# list.read_list_from_file()
+# puts list.get_student_by_id(5)
+# puts list.get_student_short_count
 
-list = Student_list_YAML.new('students.yaml')
-list.add_student(student1)
-list.add_student(student2)
-list.add_student(student3)
-list.add_student(student4)
-list.write_list_to_file
-puts list.get_student_by_id(3)
+# list = Student_list_YAML.new('students.yaml')
+# list.add_student(student1)
+# list.add_student(student2)
+# list.add_student(student3)
+# list.add_student(student4)
+# list.write_list_to_file
+# puts list.get_student_by_id(3)
+
+json_list = Student_list_file_base.new("students_example.json", Strategy_JSON.new())
+json_list.read_list_from_file()
+puts json_list.get_student_by_id(5)
+puts json_list.get_student_short_count

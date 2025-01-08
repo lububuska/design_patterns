@@ -1,10 +1,12 @@
 require './short_class_student.rb'
-require './Data/data_list_student_short.rb'
+require_relative './Data/data_list_student_short.rb'
 
 class Student_list_file_base
+  attr_accessor :strategy
 
-  def initialize(file_path)
+  def initialize(file_path, strategy)
     @file_path = file_path
+    @strategy = strategy
     @students = read_list_from_file
   end
 
@@ -51,11 +53,11 @@ class Student_list_file_base
   end
 
   def read_list_from_file
-    raise NotImplementedError, "Method read_list_from_file must be implemented in children class!"
+    @strategy.read_list_from_file(@file_path, @students)
   end
 
   def write_list_to_file
-    raise NotImplementedError, "Method write_list_to_file must be implemented in children class!"
+    @strategy.write_list_to_file(@file_path, @students)
   end
 
   protected
