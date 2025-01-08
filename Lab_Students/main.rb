@@ -5,6 +5,7 @@ require_relative 'Data/data_list_student_short.rb'
 require_relative 'Data/data_list.rb'
 require './student_list_JSON.rb'
 require './student_list_YAML.rb'
+require './student_list_file_base.rb'
 
 
 student1 = Student.new(surname: "Масенко", name: "Мария", fathername: "Сергеевна", birthday: 1076532600, id: 1, git: "github.com/lububuska", email: "masenko.maria2004@gmail.com")
