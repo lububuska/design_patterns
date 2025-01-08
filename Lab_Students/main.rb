@@ -4,6 +4,7 @@ require './Tree/binary_tree.rb'
 require_relative 'Data/data_list_student_short.rb'
 require_relative 'Data/data_list.rb'
 require './student_list_JSON.rb'
+require './student_list_YAML.rb'
 
 
 student1 = Student.new(surname: "Масенко", name: "Мария", fathername: "Сергеевна", birthday: 1076532600, id: 1, git: "github.com/lububuska", email: "masenko.maria2004@gmail.com")
@@ -35,7 +36,20 @@ student6 = Student.new(surname: "Кузнецов", name: "Дмитрий", fath
 # puts list.replace_student(4, student6)
 # list.write_list_to_file
 
-list = Student_list_JSON.new("students_example.json")
+# list = Student_list_JSON.new("students_example.json")
+# list.read_list_from_file()
+# puts list.get_student_by_id(13)
+# puts list.get_student_short_count
+
+list = Student_list_YAML.new('students_example.yaml')
 list.read_list_from_file()
-puts list.get_student_by_id(13)
+puts list.get_student_by_id(5)
 puts list.get_student_short_count
+
+list = Student_list_YAML.new('students.yaml')
+list.add_student(student1)
+list.add_student(student2)
+list.add_student(student3)
+list.add_student(student4)
+list.write_list_to_file
+puts list.get_student_by_id(3)

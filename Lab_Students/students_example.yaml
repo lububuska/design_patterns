@@ -1,0 +1,46 @@
+---
+- id: 1 
+  surname: Масенко
+  name: Мария
+  fathername: Сергеевна
+  birthday: 1076532600
+  tel:
+  tg:
+  email: masenko.maria2004@gmail.com
+  git: github.com/lububuska
+- id: 2
+  surname: Иванов
+  name: Александр
+  fathername: Петрович
+  birthday: 1022313600
+  tel: "+79001234567"
+  tg:
+  email:
+  git: github.com/alexivanov
+- id: 3
+  surname: Смирнова
+  name: Елена
+  fathername: Викторовна
+  birthday: 1009843200
+  tel:
+  tg: "@elena_smirnova"
+  email:
+  git: github.com/elensmirnova
+- id: 4
+  surname: Кузнецов
+  name: Дмитрий
+  fathername: Николаевич
+  birthday: 1051747200
+  tel:
+  tg:
+  email: d.kuznetsov@mail.ru
+  git: github.com/dmitriykuz
+- id: 5
+  surname: Попова
+  name: Анастасия
+  fathername: Андреевна
+  birthday: 1036800000
+  tel: "+79876543210"
+  tg:
+  email:
+  git: github.com/nastya-popova
