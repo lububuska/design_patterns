@@ -1,6 +1,6 @@
 require 'yaml'
-require './class_student.rb'
-require './strategy.rb'
+require './Entities/student.rb'
+require './Student_list_strategy/strategy.rb'
 
 class Strategy_YAML < Strategy
   def read_list_from_file(file_path, students)

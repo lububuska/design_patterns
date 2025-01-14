@@ -1,10 +1,11 @@
-require './class_student.rb'
-require './short_class_student.rb'
-require_relative 'Data/data_list_student_short.rb'
-require_relative 'Data/data_list.rb'
-require './strategy_JSON.rb'
-require './strategy_YAML.rb'
-require './student_list_file_base.rb'
+require './Entities/student.rb'
+require './Entities/student_short.rb'
+require './Data/Data_list/data_list_student_short.rb'
+require './Data/Data_list/data_list.rb'
+require './Student_list_strategy/strategy_JSON.rb'
+require './Student_list_strategy/strategy_YAML.rb'
+require './Student_list_strategy/student_list_file_base.rb'
+require './DB/connecting.rb'
 
 
 student1 = Student.new(surname: "Масенко", name: "Мария", fathername: "Сергеевна", birthday: 1076532600, id: 1, git: "github.com/lububuska", email: "masenko.maria2004@gmail.com")
@@ -54,7 +55,12 @@ student6 = Student.new(surname: "Кузнецов", name: "Дмитрий", fath
 # list.write_list_to_file
 # puts list.get_student_by_id(3)
 
-json_list = Student_list_file_base.new("students_example.json", Strategy_JSON.new())
-json_list.read_list_from_file()
-puts json_list.get_student_by_id(5)
-puts json_list.get_student_short_count
+# json_list = Student_list_file_base.new("students_example.json", Strategy_JSON.new())
+# json_list.read_list_from_file()
+# puts json_list.get_student_by_id(5)
+# puts json_list.get_student_short_count
+
+client = PG_client.new()
+client.exec("select * from students;").each do |row|
+  puts row
+end

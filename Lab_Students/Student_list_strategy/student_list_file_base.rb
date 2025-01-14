@@ -1,5 +1,5 @@
-require './short_class_student.rb'
-require_relative './Data/data_list_student_short.rb'
+require './Entities/student_short.rb'
+require './Data/Data_list/data_list_student_short.rb'
 
 class Student_list_file_base
   attr_accessor :strategy

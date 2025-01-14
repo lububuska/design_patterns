@@ -1,4 +1,4 @@
-require './class_person.rb'
+require './Entities/person.rb'
 
 class Student < Person
   include Comparable
