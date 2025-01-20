@@ -6,6 +6,7 @@ require './Student_list_strategy/strategy_JSON.rb'
 require './Student_list_strategy/strategy_YAML.rb'
 require './Student_list_strategy/student_list_file_base.rb'
 require './DB/connecting.rb'
+require './DB/student_list_DB.rb'
 
 
 student1 = Student.new(surname: "Масенко", name: "Мария", fathername: "Сергеевна", birthday: 1076532600, id: 1, git: "github.com/lububuska", email: "masenko.maria2004@gmail.com")
@@ -60,7 +61,6 @@ student6 = Student.new(surname: "Кузнецов", name: "Дмитрий", fath
 # puts json_list.get_student_by_id(5)
 # puts json_list.get_student_short_count
 
-client = PG_client.new()
-client.exec("select * from students;").each do |row|
-  puts row
-end
+db = Student_list_DB.new
+db.client.exec("select * from students;").each { |row| puts row }
+puts db.get_student_short_count

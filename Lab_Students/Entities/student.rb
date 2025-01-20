@@ -74,6 +74,10 @@ class Student < Person
     }
   end
 
+  def self.from_hash(hash)
+    new(hash.transform_keys { |key| key.to_sym })
+  end
+
   def get_fio()
     "ФИО: #{surname} #{name[0]}. #{fathername[0]}."
   end
