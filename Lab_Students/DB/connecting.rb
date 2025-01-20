@@ -1,5 +1,26 @@
 require 'pg'
 class PG_client
+  def exec(query)
+    client.exec(query)
+  end
+  
+  def exec_params(query)
+    client.exec_params(query)
+  end
+
+  def close
+    client.close
+  end
+
+  @instance = nil 
+
+  def self.instance
+    @instance ||= new
+  end
+
+  private
+  attr_accessor :client
+
   def initialize
     self.client = PG.connect(
       dbname: 'students',
@@ -9,15 +30,4 @@ class PG_client
       port: 5432
     )
   end
-
-  def exec(query)
-    client.exec(query)
-  end
-  
-  def exec_params(query)
-    client.exec_params(query)
-  end
-
-  private
-  attr_accessor :client
 end

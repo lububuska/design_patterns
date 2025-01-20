@@ -28,11 +28,6 @@ class Student_list_DB
     Data_list_student_short.new(student_shorts)
   end
   
-  # def sort_by_surname_initials!
-  #   result = client.exec("SELECT * FROM students ORDER BY surname")
-  #   result.map { |row| row }
-  # end
-  
   def add_student(student)
     client.exec_params(
       "INSERT INTO students (surname, name, patronymic, phone, telegram, email, git, birth_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
