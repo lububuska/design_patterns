@@ -26,8 +26,7 @@ class Data_list
     data_in_table = []
     selected = self.get_selected
     selected.each do |selected_ids|
-      object = self.list[selected_ids]
-      row = [index + 1, object.fio, object.contact, object.git]
+      row = self.make_from_attributes(selected_ids)
       data_in_table.append(row)
     end
     return Data_table.new(data_in_table)

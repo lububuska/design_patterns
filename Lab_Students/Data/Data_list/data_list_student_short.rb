@@ -1,4 +1,4 @@
-require './Data/Data_list/data_list.rb'
+require_relative './data_list.rb'
 require './Data/Data_table/data_table.rb'
 
 class Data_list_student_short < Data_list
@@ -12,10 +12,6 @@ class Data_list_student_short < Data_list
 
   def to_list
     @list
-  end
-  
-  def to_array
-    (0...@list.size).map { |index| make_from_attributes(index) }
   end
 
   private
