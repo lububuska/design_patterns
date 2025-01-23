@@ -182,11 +182,6 @@ class Student_list_view < FXMainWindow
     @controller.refresh_data
   end
 
-  def sort_table_by_column(col_idx=0)
-    return if @data.nil? || @data.row_count <= 1
-    @data, @sort_order = @controller.sort_table_by_column(@data, @sort_order, col_idx)
-  end
-
   def create
       super
       show(PLACEMENT_SCREEN)
