@@ -1,12 +1,12 @@
-require './Entities/student.rb'
-require './Entities/student_short.rb'
-require './Data/Data_list/data_list_student_short.rb'
+require_relative '../entities/student.rb'
+require_relative '../entities/student_short.rb'
+require_relative '../data_list/data_list_student_short.rb'
 
 class Student_list_DB
   attr_accessor :client 
 
   def initialize
-    self.client = PG_client.new
+    self.client = PG_client.instance
   end
 
   def get_by_id(id)
@@ -29,6 +29,7 @@ class Student_list_DB
   end
   
   def add_student(student)
+    check_unique_student(student)
     client.exec_params(
       "INSERT INTO students (surname, name, patronymic, phone, telegram, email, git, birth_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
       [student.surname, student.name, student.patronymic, student.phone, student.telegram, student.email, student.git, student.birth_date]
@@ -36,6 +37,7 @@ class Student_list_DB
   end
   
   def replace_student(id, student)
+    check_unique_student(student, id)
     client.exec_params(
       "UPDATE students SET surname = $1, name = $2, patronymic = $3, phone = $4, telegram = $5, email = $6, git = $7, birth_date = $8 WHERE id = $9",
       [student.surname, student.name, student.patronymic, student.phone, student.telegram, student.email, student.git, student.birth_date, id]
@@ -49,5 +51,24 @@ class Student_list_DB
   def get_student_short_count
     result = client.exec("SELECT COUNT(*) FROM students")
     result[0]['count'].to_i
+  end
+  
+  private
+
+  def check_unique_student(student, id = nil)
+    query = "SELECT 1 FROM students WHERE (phone_number = $1 OR email = $2 OR git = $3)"
+    params = [student.phone, student.email, student.git]
+  
+    if id
+      query += " AND id != $4"
+      params << id
+    end
+  
+    query += " LIMIT 1"
+  
+    result = client.exec_params(query, params)
+    if result.ntuples > 0
+      raise "Student with the same phone_number, email or git already exists!"
+    end
   end
 end

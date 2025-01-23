@@ -1,5 +1,7 @@
 require 'pg'
 class PG_client
+  private_class_method :new
+  
   def exec(query)
     client.exec(query)
   end

@@ -1,5 +1,5 @@
 require_relative './data_list.rb'
-require './Data/Data_table/data_table.rb'
+require_relative '../data_table/data_table.rb'
 
 class Data_list_student_short < Data_list
   def initialize(list)
@@ -7,7 +7,7 @@ class Data_list_student_short < Data_list
   end
 
   def get_names
-    ['fio', 'contact', 'git']
+    ['id','fio', 'contact', 'git']
   end
 
   def to_list
@@ -16,6 +16,6 @@ class Data_list_student_short < Data_list
 
   private
   def make_from_attributes(index)
-    return [index + 1, @list[index].fio, @list[index].contact, @list[index].git]
+    return [index, @list[index].fio, @list[index].contact, @list[index].git]
   end
 end

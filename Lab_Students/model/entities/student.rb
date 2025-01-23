@@ -79,9 +79,21 @@ class Student < Person
   end
 
   def get_fio()
-    "ФИО: #{surname} #{name[0]}. #{fathername[0]}."
+    "#{surname} #{name[0]}. #{fathername[0]}."
   end
 
+  def ==(other)
+    if other.is_a? Student
+      return (@id && other.id == @id) ||
+      (@git && other.git == @git) ||
+      (@email && other.email == @email) ||
+      (@phone_number && other.phone_number == @phone_number) ||
+      (@telegram && other.telegram == @telegram)
+    else
+      false
+    end
+  end
+  
   def contact()
     if @tel then
       "telephone number: #{@tel}"

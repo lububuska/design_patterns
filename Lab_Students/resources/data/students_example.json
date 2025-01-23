@@ -6,7 +6,7 @@
       "birthday": 1076532600,
       "id": 1,
       "git": "github.com/lububuska",
-      "email": "masenko.maria2004@gmail.com"
+      "tel": "+79384000874"
     },
     {
       "surname": "Иванов",
@@ -15,7 +15,7 @@
       "birthday": 1027205400,
       "id": 2,
       "git": "github.com/alekseyivanov",
-      "email": "ivanov.aleksey2003@gmail.com"
+      "tel": "+79006759216"
     },
     {
       "surname": "Смирнова",
@@ -24,7 +24,7 @@
       "birthday": 1104129000,
       "id": 3,
       "git": "github.com/olgasmirnova",
-      "email": "smirnova.olga2005@gmail.com"
+      "tel": "+79123456789"
     },
     {
       "surname": "Кузнецов",
@@ -51,7 +51,7 @@
       "birthday": 1041301800,
       "id": 6,
       "git": "github.com/vladpetrov",
-      "email": "petrov.vlad2003@gmail.com"
+      "tel": "+79274567890"
     },
     {
       "surname": "Соколова",
@@ -78,7 +78,7 @@
       "birthday": 1112317800,
       "id": 9,
       "git": "github.com/valeriavolkova",
-      "email": "volkova.valeria2005@gmail.com"
+      "tel": "+79012345678"
     },
     {
       "surname": "Лебедев",
@@ -87,7 +87,7 @@
       "birthday": 1066480200,
       "id": 10,
       "git": "github.com/maximlebedev",
-      "email": "lebedev.maxim2004@gmail.com"
+      "tel": "+79246789012"
     },
     {
       "surname": "Зайцева",
@@ -132,7 +132,7 @@
       "birthday": 1094854200,
       "id": 15,
       "git": "github.com/sofiagrigorieva",
-      "email": "grigorieva.sofia2004@gmail.com"
+      "tg": "@grigi"
     },
     {
       "surname": "Романов",
@@ -168,7 +168,7 @@
       "birthday": 1090635000,
       "id": 19,
       "git": "github.com/alicefedorova",
-      "email": "fedorova.alice2004@gmail.com"
+      "tel": "+79054321098"
     },
     {
       "surname": "Тихонов",
